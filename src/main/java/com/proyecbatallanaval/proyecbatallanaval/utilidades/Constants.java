@@ -1,6 +1,6 @@
 package com.proyecbatallanaval.proyecbatallanaval.utilidades;
 
-public final class Constants {
+    public final class Constants {
     public static final String DATA_NOT_FOUND="Dato no encontrado";
     public static final String ERROR_DATA_NOT_FOUND="El dato suministrado no generó resultados";
     public static final String SUCCESSFUL="Exitoso";

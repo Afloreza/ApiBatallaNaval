@@ -11,12 +11,12 @@ import java.io.Serializable;
 public class DistribucionBarcoDTO implements Serializable {
     private Barco barco;
     private byte orientacion;
-    private String estado;//Tocado, Hundido, Intacto
+    private String estado;
     private CoordenadaDTO[] casillas;
 
     public DistribucionBarcoDTO(Barco barco) {
         this.barco = barco;
-        this.estado="INTACTO";
+        this.estado="AGUA";
 
     }
 

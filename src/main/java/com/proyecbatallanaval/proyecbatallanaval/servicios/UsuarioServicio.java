@@ -29,20 +29,20 @@ public class UsuarioServicio {
         try
         {
             Usuario usuarioGuardado= usuarioRepositorio.save(usuario);
-            return new ResponseEntity<>(new RespuestaDTO("Exitoso",
+            return new ResponseEntity<>(new RespuestaDTO("Registro Exitoso",
                     usuarioGuardado,null), HttpStatus.OK);
         }
         catch(Exception ex)
         {
             return new ResponseEntity<>(new RespuestaDTO("Error",
-                    null,"Ocurrió un error almacenando el usuario"),
+                    null,"Error al registrar al usuario"),
                     HttpStatus.CONFLICT);
         }
     }
 
     public ResponseEntity<Object> findUsersByRol(short codeRol)
     {
-        return new ResponseEntity<>(new RespuestaDTO("Exitoso",
+        return new ResponseEntity<>(new RespuestaDTO("Registro Exitoso",
                 usuarioRepositorio.obtenerUsuariosPorRol(codeRol),null), HttpStatus.OK);
     }
 }

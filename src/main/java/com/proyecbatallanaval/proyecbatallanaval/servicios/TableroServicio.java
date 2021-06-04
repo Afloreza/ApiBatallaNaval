@@ -25,7 +25,7 @@ public class TableroServicio {
     {
         try
         {
-            Usuario usuario = this.usuarioRepositorio.obtenerUsuariosPorCorreoRol(tablero.getCreadoPor(), TipoUsuario.TIPO_ADMINISTRADOR);
+            Usuario usuario = this.usuarioRepositorio.obtenerUsuariosPorCorreoRol(tablero.getJugado(), TipoUsuario.TIPO_ADMINISTRADOR);
             if(usuario != null){
                 tableroRepositorio.save(tablero);
                 return new ResponseEntity<>(new RespuestaDTO("Exitoso",

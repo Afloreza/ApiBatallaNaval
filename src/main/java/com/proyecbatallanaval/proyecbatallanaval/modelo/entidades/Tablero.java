@@ -1,41 +1,39 @@
 package com.proyecbatallanaval.proyecbatallanaval.modelo.entidades;
 
 
+import com.proyecbatallanaval.proyecbatallanaval.modelo.ListaDE;
+import com.proyecbatallanaval.proyecbatallanaval.modelo.dto.CoordenadaDTO;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
+import java.util.List;
 
-@Entity
-@Table(name = "tablero", schema = "public", catalog = "batalla_naval")
+@Getter
+@Setter
 public class Tablero {
-    private int id;
-    private int cols;
-    private int filas;
-    private int juegoId;
-    private int creadoPor;
+    public int id;
+    public int cols;
+    public int filas;
+    public Usuario jugador;
+    public ListaDE listaBarco;
+    public boolean estadoTablero;
+    public List<CoordenadaDTO> disparosRecibidos;
 
 
-    @Id
-    @Column(name = "id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public int getId() {
-        return id;
-    }
-    public void setId(int id){
-        this.id =id;
+
+    public Tablero(int id, int cols, int filas, Usuario jugador,
+                   ListaDE listaBarco) {
+        this.id = id;
+        this.cols = cols;
+        this.filas = filas;
+        this.jugador = jugador;
+        this.listaBarco = listaBarco;
+
     }
 
-    @Column(name = "juego_id", nullable = true)
-    public int getJuegoId() {
-        return this.juegoId;
+    public String validarDisparo(int x, int y) // terminar!!!
+    {
+        return null;
     }
-    public void setJuegoId(int juegoId){
-        this.juegoId = juegoId;
-    }
-    @Column(name = "creado_por", nullable = true)
-    public int getCreadoPor() {
-        return this.creadoPor;
-    }
-    public void setCreadoPor(int creadoPor){
-        this.creadoPor = creadoPor;
-    }
-
 }

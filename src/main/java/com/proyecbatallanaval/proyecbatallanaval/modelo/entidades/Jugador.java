@@ -8,31 +8,31 @@ import javax.persistence.Id;
 @Entity
 public class Jugador
 {
-    private String apodo;
-    private short edad;
+    private String nombre;
+    private int id;
 
     @Id
-    @Column(name = "apodo")
-    public String getApodo()
+    @Column(name = "nombre")
+    public String getNombre()
     {
-        return apodo;
+        return nombre;
     }
 
-    public void setApodo(String apodo)
+    public void setNombre(String nombre)
     {
-        this.apodo = apodo;
+        this.nombre = nombre;
     }
 
     @Basic
-    @Column(name = "edad")
-    public short getEdad()
+    @Column(name = "id")
+    public int getId()
     {
-        return edad;
+        return id;
     }
 
-    public void setEdad(short edad)
+    public void setId(int id)
     {
-        this.edad = edad;
+        this.id = id;
     }
 
     @Override
@@ -43,8 +43,8 @@ public class Jugador
 
         Jugador jugador = (Jugador) o;
 
-        if (edad != jugador.edad) return false;
-        if (apodo != null ? !apodo.equals(jugador.apodo) : jugador.apodo != null) return false;
+        if (id != jugador.id) return false;
+        if (nombre != null ? !nombre.equals(jugador.nombre) : jugador.nombre != null) return false;
 
         return true;
     }
@@ -52,8 +52,8 @@ public class Jugador
     @Override
     public int hashCode()
     {
-        int result = apodo != null ? apodo.hashCode() : 0;
-        result = 31 * result + (int) edad;
+        int result = nombre != null ? nombre.hashCode() : 0;
+        result = 31 * result + (int) id;
         return result;
     }
 }

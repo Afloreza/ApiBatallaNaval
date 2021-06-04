@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(path = "barco")
 @Validated
-//Clase para controlar el barco
+//Clase para administrar el barco
 public class BarcoControlador {
     private BarcosServicio barcosServicio;
 

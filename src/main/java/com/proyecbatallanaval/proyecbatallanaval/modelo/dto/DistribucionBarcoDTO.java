@@ -9,15 +9,35 @@ import java.io.Serializable;
 @Getter
 @Setter
 public class DistribucionBarcoDTO implements Serializable {
+    private CoordenadaDTO[] casillas;
     private Barco barco;
     private byte orientacion;
     private String estado;
-    private CoordenadaDTO[] casillas;
+
 
     public DistribucionBarcoDTO(Barco barco) {
+        this.casillas = casillas;
         this.barco = barco;
-        this.estado="AGUA";
+        this.orientacion = orientacion;
+        this.estado = estado;
+    }
 
+    public boolean validarDisparo(int x, int y)
+    {
+        return true;
+    }
+
+    public boolean validarExistenciaCoordenada(CoordenadaDTO coordenada)
+    {
+        if(casillas!=null) {
+            for (CoordenadaDTO coord : casillas) {
+                if(coord.equals(coordenada))
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public void definirUbicacion(int x, int y, byte orientacion)
@@ -43,17 +63,6 @@ public class DistribucionBarcoDTO implements Serializable {
         this.casillas= coordenadas;
     }
 
-    public boolean validarExistenciaCoordenada(CoordenadaDTO coordenada){
-        if(casillas!=null) {
-            for (CoordenadaDTO coord : casillas) {
-                if(coord.equals(coordenada))
-                {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
 
     public CoordenadaDTO[] sugerirUbicacion(int x, int y, byte orientacion)
     {

@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
-//Clase que controla los servicios de los usuarios
 public class UsuarioServicio {
     private UsuarioRepositorio usuarioRepositorio;
     @Autowired
@@ -35,14 +34,40 @@ public class UsuarioServicio {
         catch(Exception ex)
         {
             return new ResponseEntity<>(new RespuestaDTO("Error",
-                    null,"Error al registrar al usuario"),
+                    null,"Error al registrar el usuario"),
                     HttpStatus.CONFLICT);
         }
     }
 
-    public ResponseEntity<Object> findUsersByRol(short codeRol)
+
+    public ResponseEntity<Object> findUsersByRol(int codeRol)
     {
-        return new ResponseEntity<>(new RespuestaDTO("Registro Exitoso",
-                usuarioRepositorio.obtenerUsuariosPorRol(codeRol),null), HttpStatus.OK);
+        try {
+            return new ResponseEntity<>(new RespuestaDTO("Exitoso",
+                    usuarioRepositorio.obtenerUsuariosPorRol(codeRol), null), HttpStatus.OK);
+        }
+
+        catch (Exception ex)
+        {
+            return new ResponseEntity<>(new RespuestaDTO("Error",
+                    null, null), HttpStatus.CONFLICT);
+        }
+    }
+
+    public ResponseEntity<Object> findUsersByMail(String mail)
+    {
+        try
+        {
+            return new ResponseEntity<>(new RespuestaDTO("Exitoso",
+                    usuarioRepositorio.obtenerUsuarioPorCorreo(mail),null),
+                    HttpStatus.OK);
+
+        }
+        catch(Exception ex)
+        {
+            return new ResponseEntity<>(new RespuestaDTO("Error",
+                    null,
+                    "Usuario no encontrado"), HttpStatus.CONFLICT);
+        }
     }
 }

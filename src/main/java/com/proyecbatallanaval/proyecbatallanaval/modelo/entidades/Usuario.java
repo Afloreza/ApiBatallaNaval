@@ -23,7 +23,7 @@ public class Usuario {
     }
 
     @Basic
-    @Column(name = "correo", nullable = false, length = 70)
+    @Column(name = "correo", nullable = false, length = 50)
     public String getCorreo() {
         return correo;
     }
@@ -33,7 +33,7 @@ public class Usuario {
     }
 
     @Basic
-    @Column(name = "contrasenia", nullable = false, length = 10)
+    @Column(name = "contrasenia", nullable = false, length = 16)
     public String getContrasenia() {
         return contrasenia;
     }

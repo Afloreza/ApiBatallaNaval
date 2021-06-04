@@ -10,30 +10,29 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(path = "usuario")
 @Validated
-
-    public class UsuarioControlador {
+public class UsuarioControlador {
     private UsuarioServicio usuarioServicio;
-
     @Autowired
     public UsuarioControlador(UsuarioServicio usuarioServicio) {
         this.usuarioServicio = usuarioServicio;
     }
 
     @GetMapping
-    public @ResponseBody ResponseEntity<Object> findAll() {
-
+    public @ResponseBody ResponseEntity<Object> findAll()
+    {
         return usuarioServicio.findAll();
     }
 
     @PostMapping
-    public @ResponseBody ResponseEntity<Object> create(@RequestBody Usuario usuario){
+    public @ResponseBody ResponseEntity<Object> create(@RequestBody Usuario usuario)
+    {
         return usuarioServicio.create(usuario);
     }
 
-    @GetMapping(path = "{codeRol}")
-    public @ResponseBody ResponseEntity<Object> findUsersByCodeRol(@PathVariable("codeRol") short codeRol)
+    @GetMapping(path = "userbymail/{mail}")
+    public @ResponseBody ResponseEntity<Object> findUsersByMail(@PathVariable("mail") String mail)
     {
-        return usuarioServicio.findUsersByRol(codeRol);
+        return usuarioServicio.findUsersByMail(mail);
     }
 
 }

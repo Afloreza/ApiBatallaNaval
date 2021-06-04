@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "listabarcos")
-
 public class ListaDEControlador {
     private ListaDEServicio listaDEServicio;
     @Autowired
@@ -30,4 +29,9 @@ public class ListaDEControlador {
         return listaDEServicio.adicionarDistribucionBarco(distribucion);
     }
 
+    @GetMapping("cont")
+    public @ResponseBody ResponseEntity<Object> contarNodos()
+    {
+        return listaDEServicio.contarNodos();
+    }
 }

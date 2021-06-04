@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
-//Clase para implementar el servicio del Barco
 public class BarcosServicio {
     private BarcosRepositorio barcosRepositorio;
     @Autowired
@@ -28,8 +27,8 @@ public class BarcosServicio {
         try
         {
             //Consultar si ya existe un barco con ese número de casilla
-            Barco barcoConsulta = barcosRepositorio.encontrarBarcoPorNumeroCasillas(barco.getNumeroCasillas());
-            if(barcoConsulta==null)
+            Barco barcosConsulta = barcosRepositorio.encontrarBarcoPorNumeroCasillas(barco.getNumeroCasillas());
+            if(barcosConsulta==null)
             {
                 Barco barcoGuardado= barcosRepositorio.save(barco);
                 return new ResponseEntity<>(new RespuestaDTO("Exitoso",
@@ -48,5 +47,8 @@ public class BarcosServicio {
                     null,"Ocurrió un error almacenando el Barco"),
                     HttpStatus.CONFLICT);
         }
+
+
     }
+
 }

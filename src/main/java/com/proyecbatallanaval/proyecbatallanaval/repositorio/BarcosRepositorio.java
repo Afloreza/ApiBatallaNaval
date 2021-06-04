@@ -11,7 +11,4 @@ public interface BarcosRepositorio extends CrudRepository<Barco,Integer> {
     @Query("SELECT barquito FROM Barco barquito WHERE barquito.numeroCasillas=?1")
     Barco encontrarBarcoPorNumeroCasillas(short numeroCasillas);
 
-    @Query("SELECT barquitos FROM Barco barquitos WHERE barquitos.id=?1")
-    Barco getBarcoById(int id);
-
 }

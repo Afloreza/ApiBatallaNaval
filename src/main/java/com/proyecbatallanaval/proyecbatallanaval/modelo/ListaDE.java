@@ -16,6 +16,7 @@ public class ListaDE implements Serializable {
     private NodoDE cabeza;
     private int cont;
 
+
     public int contarNodos()
     {
         if (cabeza == null){

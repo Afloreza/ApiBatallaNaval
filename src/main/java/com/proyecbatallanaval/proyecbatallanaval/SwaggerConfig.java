@@ -28,11 +28,11 @@ public class SwaggerConfig {
     //Agregar método información o documentación de mi api
     private ApiInfo getApiInfo() {
         return new ApiInfo(
-                "API Batalla Naval con Lista DE",
+                "Api Batalla Naval",
                 "Api que permite gestionar todo el backend de el juego Batalla Naval",
                 "1.0",
-                "http://www.umanizales.edu.co/",
-                new Contact("Angela", "http://www.umanizales.edu.co/",
+                "http://www.proyecbatallanaval.edu.co/",
+                new Contact("Angela", "http://www.proyecbatallanaval.edu.co/",
                         "angela@umanizales.edu.co"),
                 "LICENSE",
                 "LICENSE URL",

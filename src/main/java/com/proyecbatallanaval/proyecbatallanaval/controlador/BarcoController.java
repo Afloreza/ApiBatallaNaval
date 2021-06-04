@@ -10,24 +10,23 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(path = "barco")
 @Validated
-//Clase para administrar el barco
-public class BarcoControlador {
+    public class BarcoControlador {
     private BarcosServicio barcosServicio;
-
     @Autowired
-    public BarcoControlador(BarcosServicio barcosServicio) {
+    public BarcoControlador (BarcosServicio barcosServicio) {
         this.barcosServicio = barcosServicio;
     }
 
     @GetMapping
-    public @ResponseBody
-    ResponseEntity<Object> findAll() {
+    public @ResponseBody ResponseEntity<Object> findAll()
+    {
 
         return barcosServicio.findAll();
     }
 
     @PostMapping
-    public @ResponseBody ResponseEntity<Object> create(@RequestBody Barco barco){
+    public @ResponseBody ResponseEntity<Object> create(@RequestBody Barco barco)
+    {
         return barcosServicio.create(barco);
     }
 }

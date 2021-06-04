@@ -1,11 +1,9 @@
 package com.proyecbatallanaval.proyecbatallanaval.servicios;
 
-import com.proyecbatallanaval.proyecbatallanaval.modelo.dto.RespuestaDTO;
 import com.proyecbatallanaval.proyecbatallanaval.modelo.entidades.Juego;
-import com.proyecbatallanaval.proyecbatallanaval.modelo.entidades.TipoUsuario;
+import com.proyecbatallanaval.proyecbatallanaval.modelo.entidades.Tablero;
+import com.proyecbatallanaval.proyecbatallanaval.modelo.dto.RespuestaDTO;
 import com.proyecbatallanaval.proyecbatallanaval.modelo.entidades.Usuario;
-import com.proyecbatallanaval.proyecbatallanaval.repositorio.JuegoRepositorio;
-import com.proyecbatallanaval.proyecbatallanaval.repositorio.UsuarioRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,32 +11,36 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class JuegoServicio {
-    private UsuarioRepositorio usuarioRepositorio;
-    private JuegoRepositorio juegoRepositorio;
+    private ListaDEServicio listaDEServicio; //inyecto el servicio de ListaDE
+    private Tablero tablero;
+
+
+    // TERMINAR ESTE CONSTRUCTOR!!!
     @Autowired
-    public JuegoServicio(UsuarioRepositorio usuarioRepositorio, JuegoRepositorio juegoRepositorio) {
-        this.usuarioRepositorio = usuarioRepositorio;
-        this.juegoRepositorio  = juegoRepositorio;
+    public JuegoServicio(ListaDEServicio listaDEServicio) {
+        this.listaDEServicio = listaDEServicio;
     }
-    public ResponseEntity<Object> create(Juego juego)
+
+    //private List<Juego> juego;
+    private Juego juego;
+
+    public ResponseEntity<Object> crearJuego(Usuario jugador1, Usuario jugador2)
     {
-        try
+        // validar y crear juego con los 2 tableros
+
+        if (listaDEServicio.obtenerContadorLista()>0)
         {
-            Usuario usuario = this.usuarioRepositorio.obtenerUsuariosPorCorreoRol(juego.getCreadoPor(), TipoUsuario.TIPO_ADMINISTRADOR);
-            if(usuario != null){
-                juegoRepositorio.save(juego);
-                return new ResponseEntity<>(new RespuestaDTO("Exitoso",
-                        juego,null), HttpStatus.OK);
-            }else{
-                return new ResponseEntity<>(new RespuestaDTO("Error",
-                        null,"El usuario no es de tipo administrador"),
-                        HttpStatus.UNAUTHORIZED);
-            }
+            // crear el tablero 1 y el tablero 2
+            // crear el juego
+            // retorno el juego creado
+            juego = new Juego(1,jugador1,jugador2,listaDEServicio.getListaBarcos());
+            return new ResponseEntity<>(new RespuestaDTO("Juego creado",
+                    juego,null), HttpStatus.OK);
         }
-        catch(Exception ex)
+        else
         {
             return new ResponseEntity<>(new RespuestaDTO("Error",
-                    null,"Ocurrió un error almacenando el juego"),
+                    null,"Aun no ha distribuido la lista DE"),
                     HttpStatus.CONFLICT);
         }
     }

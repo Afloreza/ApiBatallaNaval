@@ -23,44 +23,42 @@ public class Juego {
     public DistribucionBarcoDTO distribucionBarcoDTO;
     public CoordenadaDTO coordenadaDTO;
 
-    public Juego(int id, Usuario jugador1, Usuario jugador2, ListaDE listaDE)
-    {
+    public Juego(int id, Usuario jugador1, Usuario jugador2, ListaDE listaDE) {
         this.id = id;
         this.listaDE = listaDE;
 
-        crearTableros(id,jugador1,jugador2,listaDE.getCont());
+        crearTableros(id, jugador1, jugador2, listaDE.getCont());
     }
 
-    public void crearTableros(int id, Usuario jugador1, Usuario jugador2, int numeroBarcos)
-    {
+    // Se crea tablero para los jugadores
+    public void crearTableros(int id, Usuario jugador1, Usuario jugador2, int numeroBarcos) {
         if (numeroBarcos > 0 && numeroBarcos <= 9) {
             tableroJugador1 = new Tablero(id, 10, 10, jugador1, listaDE.clonarLista());
             tableroJugador2 = new Tablero(id, 10, 10, jugador2, listaDE.clonarLista());
-        }
-        else if (numeroBarcos >= 10 && numeroBarcos <= 20) {
+        } else if (numeroBarcos >= 10 && numeroBarcos <= 20) {
             tableroJugador1 = new Tablero(id, 20, 20, jugador1, listaDE.clonarLista());
             tableroJugador2 = new Tablero(id, 20, 20, jugador2, listaDE.clonarLista());
-        }
-        else if (numeroBarcos > 20 && numeroBarcos <= 30) {
+        } else if (numeroBarcos > 20 && numeroBarcos <= 30) {
             tableroJugador1 = new Tablero(id, 30, 30, jugador1, listaDE.clonarLista());
             tableroJugador2 = new Tablero(id, 30, 30, jugador2, listaDE.clonarLista());
 
         }
     }
-
-    public boolean disparar(int x, int y)
+    public boolean disparar(int x, int y,ListaDE listaDE)
     {
-
         return false;
     }
 
-    public String validarDisparo(int x, int y) // preguntar parametros de este metodo???
+    public void validarDisparo(int x, int y)
     {
-        return null;
+        disparar(x,y,listaDE);
     }
 
-    public Usuario validarGanador() //terminar!!!
-    {
-        return null;
+    public Usuario validarGanador(Usuario jugador1, Usuario jugador2) {
+        if (tableroJugador1 == null) {
+            return jugador2;
+        } else {
+            return jugador1;
+        }
     }
 }

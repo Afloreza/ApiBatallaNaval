@@ -29,10 +29,10 @@ public class SwaggerConfig {
     private ApiInfo getApiInfo() {
         return new ApiInfo(
                 "Api Batalla Naval",
-                "Api que permite gestionar todo el backend de el juego Batalla Naval",
+                "Api de Batalla Naval con ListaDE",
                 "1.0",
                 "http://www.proyecbatallanaval.edu.co/",
-                new Contact("Angela", "http://www.proyecbatallanaval.edu.co/",
+                new Contact("Angela Florez", "http://www.proyecbatallanaval.edu.co/",
                         "angela@umanizales.edu.co"),
                 "LICENSE",
                 "LICENSE URL",

@@ -22,8 +22,7 @@ public class Tablero {
 
 
 
-    public Tablero(int id, int cols, int filas, Usuario jugador,
-                   ListaDE listaBarco) {
+    public Tablero(int id, int cols, int filas, Usuario jugador, ListaDE listaBarco) {
         this.id = id;
         this.cols = cols;
         this.filas = filas;
@@ -32,7 +31,7 @@ public class Tablero {
 
     }
 
-    public String validarDisparo(int x, int y) // terminar!!!
+    public String validarDisparo(int x, int y)
     {
         return null;
     }

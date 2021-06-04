@@ -26,7 +26,7 @@ public class BarcosServicio {
     {
         try
         {
-            //Consultar si ya existe un barco con ese número de casilla
+            //Consulta si ya existe un barco con ese número de casilla
             Barco barcosConsulta = barcosRepositorio.encontrarBarcoPorNumeroCasillas(barco.getNumeroCasillas());
             if(barcosConsulta==null)
             {
@@ -44,7 +44,7 @@ public class BarcosServicio {
         catch(Exception ex)
         {
             return new ResponseEntity<>(new RespuestaDTO("Error",
-                    null,"Ocurrió un error almacenando el Barco"),
+                    null,"Ocurrió un error al almacenar el Barco"),
                     HttpStatus.CONFLICT);
         }
 

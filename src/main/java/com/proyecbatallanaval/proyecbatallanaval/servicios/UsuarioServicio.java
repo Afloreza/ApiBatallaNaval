@@ -34,17 +34,17 @@ public class UsuarioServicio {
         catch(Exception ex)
         {
             return new ResponseEntity<>(new RespuestaDTO("Error",
-                    null,"Error al registrar el usuario"),
+                    null,"Error"),
                     HttpStatus.CONFLICT);
         }
     }
 
 
-    public ResponseEntity<Object> findUsersByRol(int codeRol)
+    public ResponseEntity<Object> findUsersByRol(int codigoRol)
     {
         try {
             return new ResponseEntity<>(new RespuestaDTO("Exitoso",
-                    usuarioRepositorio.obtenerUsuariosPorRol(codeRol), null), HttpStatus.OK);
+                    usuarioRepositorio.obtenerUsuariosPorRol(codigoRol), null), HttpStatus.OK);
         }
 
         catch (Exception ex)

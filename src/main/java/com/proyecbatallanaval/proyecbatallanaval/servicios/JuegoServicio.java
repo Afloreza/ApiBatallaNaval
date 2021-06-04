@@ -11,11 +11,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class JuegoServicio {
-    private ListaDEServicio listaDEServicio; //inyecto el servicio de ListaDE
-    private Tablero tablero;
+    private ListaDEServicio listaDEServicio;
 
-
-    // TERMINAR ESTE CONSTRUCTOR!!!
     @Autowired
     public JuegoServicio(ListaDEServicio listaDEServicio) {
         this.listaDEServicio = listaDEServicio;
@@ -30,9 +27,7 @@ public class JuegoServicio {
 
         if (listaDEServicio.obtenerContadorLista()>0)
         {
-            // crear el tablero 1 y el tablero 2
-            // crear el juego
-            // retorno el juego creado
+            //creo  juego y tablero para 2 jugadores
             juego = new Juego(1,jugador1,jugador2,listaDEServicio.getListaBarcos());
             return new ResponseEntity<>(new RespuestaDTO("Juego creado",
                     juego,null), HttpStatus.OK);
@@ -42,6 +37,35 @@ public class JuegoServicio {
             return new ResponseEntity<>(new RespuestaDTO("Error",
                     null,"Aun no ha distribuido la lista DE"),
                     HttpStatus.CONFLICT);
+        }
+    }
+
+    public ResponseEntity<Object> validarExistenciaJuego(Tablero tablerojugador1, Tablero tablerojugador2)
+    {
+        tablerojugador1 = juego.tableroJugador1;
+        tablerojugador2 = juego.tableroJugador2;
+        if(tablerojugador1 != null && tablerojugador2 != null)
+        {
+            return new ResponseEntity<>(new RespuestaDTO("El juego ya esta creado",
+                    null,null), HttpStatus.OK);
+        }
+        else
+        {
+            return new ResponseEntity<>(new RespuestaDTO("Error",
+                    null,"Aun el juego no se encuentra creado"), HttpStatus.CONFLICT);
+        }
+    }
+
+    public ResponseEntity<Object> validarGanador(Usuario jugador1, Usuario jugador2)
+    {
+        try{
+            return new ResponseEntity<>(new RespuestaDTO("Ganador",
+                    juego.validarGanador(jugador1,jugador2),null), HttpStatus.OK);
+        }
+        catch (Exception ex)
+        {
+            return new ResponseEntity<>(new RespuestaDTO("Error",
+                    null,"Aun no hay un ganador"), HttpStatus.CONFLICT);
         }
     }
 }

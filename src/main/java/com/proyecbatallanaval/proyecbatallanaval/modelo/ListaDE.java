@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.util.List;
 
 @Getter
 @Setter
@@ -54,19 +53,21 @@ public class ListaDE implements Serializable {
         cont++;
     }
 
-    public void adicionarNodoAlInicio(NodoDE nodo){  // REVISAR ESTE METODO!!!
-        if(cabeza == null)
+    public void adicionarNodoDEAlInicio(Object dato) {
+
+        if(cabeza ==null)
         {
-            cabeza = nodo;
+            cabeza = new NodoDE(dato);
+            cont++;
         }
         else
         {
-            NodoDE temp = cabeza;
-            cabeza = nodo;
-            cabeza.setSiguiente(temp);
+            NodoDE temp = new NodoDE(dato);
+            temp.setSiguiente(cabeza);
+            cabeza=temp;
+            cont++;
         }
     }
-
 
     public boolean validarExistenciaCoordenadas(CoordenadaDTO[] coordenadas)
     {

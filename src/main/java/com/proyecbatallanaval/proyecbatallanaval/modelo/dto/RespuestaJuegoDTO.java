@@ -11,5 +11,4 @@ import java.io.Serializable;
 public class RespuestaJuegoDTO implements Serializable {
     private String usuario1;
     private String usuario2;
-    //private int numBarcos;
 }

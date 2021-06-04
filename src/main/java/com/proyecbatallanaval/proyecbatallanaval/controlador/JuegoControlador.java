@@ -8,10 +8,8 @@ import com.proyecbatallanaval.proyecbatallanaval.servicios.ListaDEServicio;
 import com.proyecbatallanaval.proyecbatallanaval.servicios.UsuarioServicio;
 import com.proyecbatallanaval.proyecbatallanaval.repositorio.UsuarioRepositorio;
 import com.proyecbatallanaval.proyecbatallanaval.modelo.entidades.Usuario;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
 @Validated
 public class JuegoControlador {
 
-    // Inyecto los servicios
     private UsuarioServicio usuarioServicio;
     private ListaDEServicio listaDEServicio;
     private JuegoServicio juegoServicio;
@@ -35,10 +32,10 @@ public class JuegoControlador {
         this.usuarioRepositorio = usuarioRepositorio;
     }
 
-    @PostMapping(path = "/crear")
+    @PostMapping(path = "/Crear Juego")
     public @ResponseBody ResponseEntity<Object> crearJuego(@RequestBody RespuestaJuegoDTO juegoDTO) {
 
-        // consulta para saber si usuarios existen
+        // consulta para los dos usuarios
         String usuario1 = juegoDTO.getUsuario1();
         String usuario2 = juegoDTO.getUsuario2();
         try {
@@ -50,7 +47,7 @@ public class JuegoControlador {
             } else {
                 return new ResponseEntity<>(new RespuestaDTO("Error",
                         null,
-                        "Los usuarios digitados no se encuentran en BD"),
+                        "Los usuarios no registran"),
                         HttpStatus.CONFLICT);
             }
         }

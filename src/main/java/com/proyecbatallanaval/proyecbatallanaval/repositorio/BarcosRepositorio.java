@@ -8,7 +8,11 @@ import org.springframework.data.repository.CrudRepository;
 public interface BarcosRepositorio extends CrudRepository<Barco,Integer> {
 
     //Para realizar una consulta, es para dar el orden de los paramatros, como lo va llamando
-    @Query("SELECT barquito FROM Barco barquito WHERE barquito.numeroCasillas=?1")
-    Barco encontrarBarcoPorNumeroCasillas(short numeroCasillas);
+    @Query("SELECT COUNT(barquito.id) FROM Barco barquito WHERE barquito.id<>?1 AND barquito.numeroCasillas=?2")
+    int encontrarBarcoPorNumeroCasillas(int barcoActualId, short numeroCasillas);
+
+    @Query("SELECT barquitos FROM Barco barquitos WHERE barquitos.id=?1")
+    Barco getBarcoById(int id);
 
 }
+

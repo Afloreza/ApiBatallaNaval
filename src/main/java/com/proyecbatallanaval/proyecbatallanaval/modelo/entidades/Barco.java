@@ -3,10 +3,12 @@ package com.proyecbatallanaval.proyecbatallanaval.modelo.entidades;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "barco", schema = "public", catalog = "batalla_naval")
+//Clase que permite la gestión de un Barco
 public class Barco {
     private int id;
     private String nombre;
-    private byte numeroCasillas;
+    private short numeroCasillas;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -36,7 +38,7 @@ public class Barco {
     }
 
     public void setNumeroCasillas(short numeroCasillas) {
-        this.numeroCasillas = (byte) numeroCasillas;
+        this.numeroCasillas = numeroCasillas;
     }
 
     @Override

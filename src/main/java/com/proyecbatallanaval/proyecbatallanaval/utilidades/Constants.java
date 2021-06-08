@@ -1,11 +1,18 @@
 package com.proyecbatallanaval.proyecbatallanaval.utilidades;
 
-    public final class Constants {
+public final class Constants {
     public static final String DATA_NOT_FOUND="Dato no encontrado";
     public static final String ERROR_DATA_NOT_FOUND="El dato suministrado no generó resultados";
     public static final String SUCCESSFUL="Exitoso";
+    public static final String ERROR ="Error";
     public static final String MESSAGE_SUCCESSFUL="Operación efectuada con éxito";
     public static final String ERROR_PERSISTENCE_SAVE="Ha ocurrido un error al intentar guardar en base de datos";
+    public static final String ERROR_PERSISTENCE_DELETE="Ha ocurrido un error al intentar eliminar en base de datos";
+
+
+    public static final String ERROR_DUPLICATE_BOX=" Ya existe un barco con ese número de casillas";
+    public static final String ERROR_USER_TYPE ="El usuario no es de tipo administrador";
+    public static final String ERROR_SAVE_GAME ="Ocurrió un error almacenando el juego";
 
     public static final float PERCENTAGE_ERROR_GAME= 0.3f;
     public static final String MESSAGE_ROWS_COLS_POSITIVE="Error en los datos suministrados";
@@ -16,7 +23,7 @@ package com.proyecbatallanaval.proyecbatallanaval.utilidades;
             " del tablero";
 
     public static final String MESSAGE_BOX_OCUPATED="Casilla ocupada";
-    public static final String ERROR_BOX_OCUPATED="Ya se encuentra un perro en la coordenada sumnistrada";
+    public static final String ERROR_BOX_OCUPATED="Ya se encuentra un barco en la coordenada sumnistrada";
 
     public static final String MESSAGE_BOARD_VOID="Tablero vacío";
     public static final String ERROR_BOARD_VOID="El tablero del juego no ha sido inicializado";

@@ -3,11 +3,14 @@ package com.proyecbatallanaval.proyecbatallanaval.controlador;
 import com.proyecbatallanaval.proyecbatallanaval.modelo.dto.CoordenadaDTO;
 import com.proyecbatallanaval.proyecbatallanaval.modelo.dto.RespuestaJuegoDTO;
 import com.proyecbatallanaval.proyecbatallanaval.modelo.dto.RespuestaDTO;
+import com.proyecbatallanaval.proyecbatallanaval.modelo.entidades.Tablero;
 import com.proyecbatallanaval.proyecbatallanaval.servicios.JuegoServicio;
 import com.proyecbatallanaval.proyecbatallanaval.servicios.ListaDEServicio;
+import com.proyecbatallanaval.proyecbatallanaval.servicios.TableroServicio;
 import com.proyecbatallanaval.proyecbatallanaval.servicios.UsuarioServicio;
 import com.proyecbatallanaval.proyecbatallanaval.repositorio.UsuarioRepositorio;
 import com.proyecbatallanaval.proyecbatallanaval.modelo.entidades.Usuario;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -72,4 +75,22 @@ public class JuegoControlador {
         return listaDEServicio.visualizarListaDE();
     }
 
+
+
+    @Autowired
+    public JuegoControlador(TableroServicio tableroServicio) {
+        this.tableroServicio = tableroServicio;
+    }
+
+    @PostMapping
+    public @ResponseBody ResponseEntity<Object> create(@PathVariable("juegoId") int juegoId,@RequestBody Tablero tablero){
+        tablero.setJuegoId(juegoId);
+        return tableroServicio.create(tablero);
+    }
+
+    @PostMapping(path = "iniciar_tablero")
+    public @ResponseBody  ResponseEntity<Object> iniciarTablero(@RequestBody Tablero tablero)
+    {
+        return tableroServicio.inicializarTablero(tablero.getFilas(), tablero.getCols());
+    }
 }

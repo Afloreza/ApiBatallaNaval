@@ -1,5 +1,6 @@
 package com.proyecbatallanaval.proyecbatallanaval.controlador;
 
+import com.proyecbatallanaval.proyecbatallanaval.modelo.dto.CoordenadaDTO;
 import com.proyecbatallanaval.proyecbatallanaval.modelo.dto.DistribucionBarcoDTO;
 import com.proyecbatallanaval.proyecbatallanaval.modelo.entidades.Barco;
 import com.proyecbatallanaval.proyecbatallanaval.servicios.ListaDEServicio;
@@ -23,7 +24,7 @@ public class ListaDEControlador {
     }
 
     @PostMapping
-    public @ResponseBody ResponseEntity<Object> adicionarDistribucionBarco(@RequestBody Barco barco)
+    public @ResponseBody ResponseEntity<Object> adicionarBarco(@RequestBody Barco barco)
     {
         DistribucionBarcoDTO distribucion = new DistribucionBarcoDTO(barco);
         return listaDEServicio.adicionarDistribucionBarco(distribucion);

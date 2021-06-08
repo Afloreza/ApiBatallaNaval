@@ -1,11 +1,9 @@
 package com.proyecbatallanaval.proyecbatallanaval.modelo.entidades;
-
-
 import javax.persistence.*;
-
 @Entity
 @Table(name = "tipo_usuario", schema = "public", catalog = "batalla_naval")
-//Clase que permite gestionar los tipos de usuario, 1 - Administrador, 2 - Jugador
+//Clase que gestionaa los tipos de usuario, adiministrador y jugador
+
 public class TipoUsuario {
     private short codigo;
     private String descripcion;

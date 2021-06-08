@@ -3,6 +3,7 @@ package com.proyecbatallanaval.proyecbatallanaval.controlador;
 import com.proyecbatallanaval.proyecbatallanaval.modelo.dto.CoordenadaDTO;
 import com.proyecbatallanaval.proyecbatallanaval.modelo.dto.RespuestaJuegoDTO;
 import com.proyecbatallanaval.proyecbatallanaval.modelo.dto.RespuestaDTO;
+import com.proyecbatallanaval.proyecbatallanaval.modelo.entidades.Juego;
 import com.proyecbatallanaval.proyecbatallanaval.modelo.entidades.Tablero;
 import com.proyecbatallanaval.proyecbatallanaval.servicios.JuegoServicio;
 import com.proyecbatallanaval.proyecbatallanaval.servicios.ListaDEServicio;
@@ -28,13 +29,13 @@ public class JuegoControlador {
     private UsuarioRepositorio usuarioRepositorio;
 
     public JuegoControlador(UsuarioServicio usuarioServicio, ListaDEServicio listaDEServicio,
-                            JuegoServicio juegoServicio, TableroServicio tableroServicio, UsuarioRepositorio usuarioRepositorio)
+                            JuegoServicio juegoServicio,  UsuarioRepositorio usuarioRepositorio, TableroServicio tableroServicio)
     {
         this.usuarioServicio = usuarioServicio;
         this.listaDEServicio = listaDEServicio;
         this.juegoServicio = juegoServicio;
-        this.tableroServicio = tableroServicio;
         this.usuarioRepositorio = usuarioRepositorio;
+        this.tableroServicio = tableroServicio;
     }
 
     @PostMapping(path = "/Crear Juego")
@@ -75,6 +76,13 @@ public class JuegoControlador {
     public @ResponseBody ResponseEntity<Object> visualizarLista()
     {
         return listaDEServicio.visualizarListaDE();
+    }
+
+
+    @PostMapping(path = "iniciar_tablero")
+    public @ResponseBody  ResponseEntity<Object> iniciarTablero(@RequestBody Tablero tablero)
+    {
+        return tableroServicio.inicializarTablero(tablero.getFilas(), tablero.getCols());
     }
 
 }

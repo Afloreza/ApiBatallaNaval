@@ -21,16 +21,37 @@ public class Tablero {
 
     public List<CoordenadaDTO> disparosRecibidos;
 
-
-
-    public Tablero(int id, int cols, int filas, Usuario jugador, ListaDE listaBarco) {
-        this.id = id;
-        this.cols = cols;
-        this.filas = filas;
-        this.jugador = jugador;
-        this.listaBarco = listaBarco;
-
+    @Id
+    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public int getId() {
+        return id;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Basic
+    @Column(name = "cols", nullable = false)
+    public int getCols() {
+        return cols;
+    }
+
+    public void setCols(int cols) {
+        this.cols = cols;
+    }
+
+    @Basic
+    @Column(name = "filas", nullable = false)
+    public int getFilas() {
+        return filas;
+    }
+
+    public void setFilas(short filas) {
+        this.filas = filas;
+    }
+
 
     public String validarDisparo(int x, int y)
     {

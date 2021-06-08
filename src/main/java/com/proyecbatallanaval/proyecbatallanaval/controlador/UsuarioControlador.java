@@ -10,14 +10,12 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(path = "usuario")
 @Validated
-//Clase para controlar los usuarios del Juego,
-// 1 - Administrador,
-// 2 - Jugador
+//Clase para controlar los usuarios del Juego, 1 - Administrador, 2 - Jugador
 public class UsuarioControlador {
     private UsuarioServicio usuarioServicio;
 
     @Autowired
-    public UsuarioControlador (UsuarioServicio usuarioServicio) {
+    public UsuarioControlador(UsuarioServicio usuarioServicio) {
         this.usuarioServicio = usuarioServicio;
     }
 

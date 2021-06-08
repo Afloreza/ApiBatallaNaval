@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
-//Clase para implementar el servicio del Barco
 public class BarcosServicio {
     private BarcosRepositorio barcosRepositorio;
 
@@ -26,7 +25,7 @@ public class BarcosServicio {
 
     public ResponseEntity<Object> create(Barco barco) {
         try {
-            //Consultar si ya existe un barco con ese número de casilla
+
             int cantidadBarcos= barcosRepositorio.encontrarBarcoPorNumeroCasillas(-1,barco.getNumeroCasillas());
             if (cantidadBarcos == 0) {
                 Barco barcoGuardado = barcosRepositorio.save(barco);

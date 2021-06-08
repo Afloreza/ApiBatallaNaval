@@ -18,6 +18,7 @@ public class Tablero {
     public Usuario jugador;
     public ListaDE listaBarco;
     public boolean estadoTablero;
+
     public List<CoordenadaDTO> disparosRecibidos;
 
 

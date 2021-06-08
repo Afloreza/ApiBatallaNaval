@@ -22,6 +22,7 @@ public class Juego {
     public ListaDE listaDE;
     public DistribucionBarcoDTO distribucionBarcoDTO;
     public CoordenadaDTO coordenadaDTO;
+    
 
     public Juego(int id, Usuario jugador1, Usuario jugador2, ListaDE listaDE) {
         this.id = id;

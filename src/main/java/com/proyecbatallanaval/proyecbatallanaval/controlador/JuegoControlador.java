@@ -24,14 +24,16 @@ public class JuegoControlador {
     private UsuarioServicio usuarioServicio;
     private ListaDEServicio listaDEServicio;
     private JuegoServicio juegoServicio;
+    private TableroServicio tableroServicio;
     private UsuarioRepositorio usuarioRepositorio;
 
     public JuegoControlador(UsuarioServicio usuarioServicio, ListaDEServicio listaDEServicio,
-                            JuegoServicio juegoServicio, UsuarioRepositorio usuarioRepositorio)
+                            JuegoServicio juegoServicio, TableroServicio tableroServicio, UsuarioRepositorio usuarioRepositorio)
     {
         this.usuarioServicio = usuarioServicio;
         this.listaDEServicio = listaDEServicio;
         this.juegoServicio = juegoServicio;
+        this.tableroServicio = tableroServicio;
         this.usuarioRepositorio = usuarioRepositorio;
     }
 
@@ -75,22 +77,4 @@ public class JuegoControlador {
         return listaDEServicio.visualizarListaDE();
     }
 
-
-
-    @Autowired
-    public JuegoControlador(TableroServicio tableroServicio) {
-        this.tableroServicio = tableroServicio;
-    }
-
-    @PostMapping
-    public @ResponseBody ResponseEntity<Object> create(@PathVariable("juegoId") int juegoId,@RequestBody Tablero tablero){
-        tablero.setJuegoId(juegoId);
-        return tableroServicio.create(tablero);
-    }
-
-    @PostMapping(path = "iniciar_tablero")
-    public @ResponseBody  ResponseEntity<Object> iniciarTablero(@RequestBody Tablero tablero)
-    {
-        return tableroServicio.inicializarTablero(tablero.getFilas(), tablero.getCols());
-    }
 }

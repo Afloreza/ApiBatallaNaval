@@ -26,28 +26,7 @@ public class TableroServicio {
         this.usuarioRepositorio = usuarioRepositorio;
         this.tableroRepositorio  = tableroRepositorio;
     }
-    public ResponseEntity<Object> create(Tablero tablero)
-    {
-        try
-        {
-            Usuario usuario = this.usuarioRepositorio.obtenerUsuarioPorCorreo(tablero.getCreadoPor(), TipoUsuario.TIPO_ADMINISTRADOR);
-            if(usuario != null){
-                tableroRepositorio.save(tablero);
-                return new ResponseEntity<>(new RespuestaDTO(Constants.SUCCESSFUL,
-                        tablero,null), HttpStatus.OK);
-            }else{
-                return new ResponseEntity<>(new RespuestaDTO(Constants.ERROR_PERSISTENCE_SAVE,
-                        null,Constants.ERROR_USER_TYPE),
-                        HttpStatus.UNAUTHORIZED);
-            }
-        }
-        catch(Exception ex)
-        {
-            return new ResponseEntity<>(new RespuestaDTO(Constants.ERROR,
-                    null,Constants.ERROR_SAVE_GAME),
-                    HttpStatus.CONFLICT);
-        }
-    }
+
 
     public ResponseEntity<Object> inicializarTablero(int filas, int cols)
     {

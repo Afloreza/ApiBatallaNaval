@@ -5,13 +5,11 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "tipo_usuario", schema = "public", catalog = "batalla_naval")
-//Clase que permite administrar los tipos de usuario,
-// 1 - Jugador
-// 2 - Adminsitrador
-
+//Clase que permite gestionar los tipos de usuario, 1 - Administrador, 2 - Jugador
 public class TipoUsuario {
     private short codigo;
     private String descripcion;
+    public static  final short TIPO_ADMINISTRADOR = 1;
 
     @Id
     @Column(name = "codigo", nullable = false)
@@ -24,7 +22,7 @@ public class TipoUsuario {
     }
 
     @Basic
-    @Column(name = "descripcion", nullable = false, length = 35)
+    @Column(name = "descripcion", nullable = false, length = 50)
     public String getDescripcion() {
         return descripcion;
     }
@@ -52,5 +50,6 @@ public class TipoUsuario {
         result = 31 * result + (descripcion != null ? descripcion.hashCode() : 0);
         return result;
     }
+
 
 }

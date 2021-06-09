@@ -17,7 +17,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path = "/juego")
+@RequestMapping(path = "juego")
 @Validated
 public class JuegoControlador {
 
@@ -37,7 +37,7 @@ public class JuegoControlador {
         this.tableroServicio = tableroServicio;
     }
 
-    @PostMapping(path = "/Crear Juego")
+    @PostMapping(path = "Crear Juego")
     public @ResponseBody ResponseEntity<Object> crearJuego(@RequestBody RespuestaJuegoDTO juegoDTO) {
 
         // consulta para los dos usuarios
@@ -64,14 +64,14 @@ public class JuegoControlador {
         }
     }
 
-    @PostMapping(path = "/validar")
+    @PostMapping(path = "validar")
     public @ResponseBody ResponseEntity<Object> validarCoordenadas(
             @RequestBody CoordenadaDTO[] coordenadas)
     {
         return listaDEServicio.validarExistenciaCoordenadas(coordenadas);
     }
 
-    @GetMapping(path = "/visualizar")
+    @GetMapping(path = "visualizar")
     public @ResponseBody ResponseEntity<Object> visualizarLista()
     {
         return listaDEServicio.visualizarListaDE();

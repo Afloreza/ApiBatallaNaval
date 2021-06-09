@@ -30,13 +30,13 @@ public class JuegoServicio {
         {
 
             juego = new Juego(1,jugador1,jugador2,listaDEServicio.getListaBarcos());
-            return new ResponseEntity<>(new RespuestaDTO("Juego creado",
+            return new ResponseEntity<>(new RespuestaDTO(Constants.SUCCESSFUL,
                     juego,null), HttpStatus.OK);
         }
         else
         {
-            return new ResponseEntity<>(new RespuestaDTO("Error",
-                    null,"Aun no ha distribuido la lista DE"),
+            return new ResponseEntity<>(new RespuestaDTO(Constants.ERROR,
+                    null,Constants.ERROR_SAVE_GAME),
                     HttpStatus.CONFLICT);
         }
     }
@@ -47,25 +47,25 @@ public class JuegoServicio {
         tablerojugador2 = juego.tableroJugador2;
         if(tablerojugador1 != null && tablerojugador2 != null)
         {
-            return new ResponseEntity<>(new RespuestaDTO("El juego ya esta creado",
+            return new ResponseEntity<>(new RespuestaDTO(Constants.ERROR,
                     null,null), HttpStatus.OK);
         }
         else
         {
-            return new ResponseEntity<>(new RespuestaDTO("Error",
-                    null,"El juego no se encuentra creado"), HttpStatus.CONFLICT);
+            return new ResponseEntity<>(new RespuestaDTO(Constants.ERROR,
+                    null,Constants.ERROR_STATE_GAME_INACTIVE), HttpStatus.CONFLICT);
         }
     }
 
     public ResponseEntity<Object> validarGanador(Usuario jugador1, Usuario jugador2)
     {
         try{
-            return new ResponseEntity<>(new RespuestaDTO("Felicidades eres el Ganador",
+            return new ResponseEntity<>(new RespuestaDTO(Constants.SUCCESSFUL,
                     juego.validarGanador(jugador1,jugador2),null), HttpStatus.OK);
         }
         catch (Exception ex)
         {
-            return new ResponseEntity<>(new RespuestaDTO("Error",
+            return new ResponseEntity<>(new RespuestaDTO(Constants.ERROR,
                     null,"Aun no hay un ganador"), HttpStatus.CONFLICT);
         }
     }

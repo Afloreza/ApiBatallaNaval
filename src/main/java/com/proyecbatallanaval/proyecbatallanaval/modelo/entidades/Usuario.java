@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "usuario", schema = "public", catalog = "batalla_naval")
-//Clase que permite la gestión de usuarios administradores y jugadores del sistema
+
 public class Usuario {
     private int id;
     private String correo;

@@ -3,7 +3,6 @@ package com.proyecbatallanaval.proyecbatallanaval.controlador;
 import com.proyecbatallanaval.proyecbatallanaval.modelo.dto.CoordenadaDTO;
 import com.proyecbatallanaval.proyecbatallanaval.modelo.dto.RespuestaJuegoDTO;
 import com.proyecbatallanaval.proyecbatallanaval.modelo.dto.RespuestaDTO;
-import com.proyecbatallanaval.proyecbatallanaval.modelo.entidades.Juego;
 import com.proyecbatallanaval.proyecbatallanaval.modelo.entidades.Tablero;
 import com.proyecbatallanaval.proyecbatallanaval.servicios.JuegoServicio;
 import com.proyecbatallanaval.proyecbatallanaval.servicios.ListaDEServicio;
@@ -11,7 +10,7 @@ import com.proyecbatallanaval.proyecbatallanaval.servicios.TableroServicio;
 import com.proyecbatallanaval.proyecbatallanaval.servicios.UsuarioServicio;
 import com.proyecbatallanaval.proyecbatallanaval.repositorio.UsuarioRepositorio;
 import com.proyecbatallanaval.proyecbatallanaval.modelo.entidades.Usuario;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.proyecbatallanaval.proyecbatallanaval.utilidades.Constants;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -51,16 +50,16 @@ public class JuegoControlador {
             if (jugador1 != null && jugador2 != null) {
                 return juegoServicio.crearJuego(jugador1, jugador2);
             } else {
-                return new ResponseEntity<>(new RespuestaDTO("Error",
+                return new ResponseEntity<>(new RespuestaDTO(Constants.ERROR,
                         null,
-                        "Los usuarios no registran"),
+                        Constants.ERROR_USER_TYPE),
                         HttpStatus.CONFLICT);
             }
         }
         catch (Exception e)
         {
-            return new ResponseEntity<>(new RespuestaDTO("Error",
-                    null, "El usuario no esta en la base de datos"),
+            return new ResponseEntity<>(new RespuestaDTO(Constants.ERROR,
+                    null,Constants.ERROR_USER_TYPE),
                     HttpStatus.CONFLICT);
         }
     }

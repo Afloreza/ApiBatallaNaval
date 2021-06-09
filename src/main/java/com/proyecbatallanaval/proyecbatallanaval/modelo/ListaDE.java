@@ -15,25 +15,7 @@ public class ListaDE implements Serializable {
     private NodoDE cabeza;
     private int cont;
 
-
-    public int contarNodos()
-    {
-        if (cabeza == null){
-            return 0;
-        }
-        else
-        {
-            int cont = 1;
-            NodoDE temp = cabeza;
-            while (temp.getSiguiente() != null){
-                cont++;
-                temp = temp.getSiguiente();
-            }
-            return cont;
-        }
-    }
-
-    public void adicionarNodo(Object dato){
+    public void adicionarNodoDE(Object dato){
         if(cabeza == null)
         {
             cabeza = new NodoDE(dato);
@@ -53,8 +35,8 @@ public class ListaDE implements Serializable {
         cont++;
     }
 
-    public void adicionarNodoDEAlInicio(Object dato) {
-
+    public void adicionarNodoDEAlInicio(Object dato)
+    {
         if(cabeza ==null)
         {
             cabeza = new NodoDE(dato);
@@ -67,6 +49,52 @@ public class ListaDE implements Serializable {
             cabeza=temp;
             cont++;
         }
+    }
+
+    public String listadoNodoDE()
+    {
+        String listado="";
+        NodoDE temp=cabeza;
+        while(temp!=null)
+        {
+            listado = listado + temp.getDato();
+            temp = temp.getSiguiente();
+        }
+
+        return listado;
+    }
+
+    public int getCont() {
+        return cont;
+    }
+
+    public Object encontrarDatoxCodigo(String codigo)
+    {
+        if(cabeza !=null)
+        {
+            NodoDE temp=cabeza;
+            while(temp !=null)
+            {
+                if(temp.getDato().equals(codigo))
+                {
+                    return temp.getDato();
+                }
+                temp = temp.getSiguiente();
+            }
+        }
+        return null;
+    }
+
+    public ListaDE clonarLista()
+    {
+        ListaDE listaCopia= new ListaDE();
+        NodoDE temp = cabeza;
+        while(temp!=null)
+        {
+            listaCopia.adicionarNodoDE(temp.getDato());
+            temp= temp.getSiguiente();
+        }
+        return listaCopia;
     }
 
     public boolean validarExistenciaCoordenadas(CoordenadaDTO[] coordenadas)
@@ -89,31 +117,19 @@ public class ListaDE implements Serializable {
         return false;
     }
 
-    public ListaDE clonarLista()
+    public DistribucionBarcoDTO encontrarxPosicion(int posicion)
     {
-        ListaDE listaCopia= new ListaDE();
-        NodoDE temp = cabeza;
-        while(temp!=null)
+        if(cabeza!=null)
         {
-            listaCopia.adicionarNodo(temp.getDato());
-            temp= temp.getSiguiente();
-        }
-        return listaCopia;
-    }
-
-    public Object encontrarDatoxCodigo(String codigo)
-    {
-        if(cabeza !=null)
-        {
-            NodoDE temp=cabeza;
-            while(temp !=null)
+            NodoDE temp= cabeza;
+            int cont=1;
+            while(posicion!=cont)
             {
-                if(temp.getDato().equals(codigo))
-                {
-                    return temp.getDato();
-                }
                 temp = temp.getSiguiente();
+                cont++;
             }
+            /// Estamos parados en el que estabamos buscando
+            return (DistribucionBarcoDTO) temp.getDato();
         }
         return null;
     }

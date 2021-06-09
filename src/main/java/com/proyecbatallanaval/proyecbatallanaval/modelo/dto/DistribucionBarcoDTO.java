@@ -1,43 +1,28 @@
 package com.proyecbatallanaval.proyecbatallanaval.modelo.dto;
 
 import com.proyecbatallanaval.proyecbatallanaval.modelo.entidades.Barco;
+import com.proyecbatallanaval.proyecbatallanaval.utilidades.Constants;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import java.io.Serializable;
+import java.lang.invoke.ConstantCallSite;
+
 
 @Getter
 @Setter
 public class DistribucionBarcoDTO implements Serializable {
-    private CoordenadaDTO[] casillas;
     private Barco barco;
     private byte orientacion;
-    private String estado;
-
+    private String estado;//Tocado, Hundido, Intacto
+    private CoordenadaDTO[] casillas;
 
     public DistribucionBarcoDTO(Barco barco) {
-        this.casillas = casillas;
         this.barco = barco;
-        this.orientacion = orientacion;
-        this.estado = estado;
-    }
+        this.estado="INTACTO";
 
-    public boolean validarDisparo(int x, int y)
-    {
-        return true;
-    }
-
-    public boolean validarExistenciaCoordenada(CoordenadaDTO coordenada)
-    {
-        if(casillas!=null) {
-            for (CoordenadaDTO coord : casillas) {
-                if(coord.equals(coordenada))
-                {
-                    return true;
-                }
-            }
-        }
-        return false;
     }
 
     public void definirUbicacion(int x, int y, byte orientacion)
@@ -47,11 +32,11 @@ public class DistribucionBarcoDTO implements Serializable {
         {
             //TODO Verificar que la coordenada este libre
             casillas[i]= new CoordenadaDTO(x,y,false);
-            if(orientacion==1)//Horizontal
+            if(orientacion==1)
             {
                 x++;
             }
-            else //Vetical
+            else
             {
                 y++;
             }
@@ -63,6 +48,17 @@ public class DistribucionBarcoDTO implements Serializable {
         this.casillas= coordenadas;
     }
 
+    public boolean validarExistenciaCoordenada(CoordenadaDTO coordenada){
+        if(casillas!=null) {
+            for (CoordenadaDTO coord : casillas) {
+                if(coord.equals(coordenada))
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
     public CoordenadaDTO[] sugerirUbicacion(int x, int y, byte orientacion)
     {
@@ -82,5 +78,21 @@ public class DistribucionBarcoDTO implements Serializable {
             }
         }
         return casillasSugeridas;
+    }
+
+    public Object validarEstadoCoordenada(CoordenadaDTO coordenada)
+    {
+        if (casillas != null)
+        {
+            for (CoordenadaDTO coord : casillas)
+            {
+                if(coord.equals(coordenada))
+                {
+                    return estado;
+                }
+            }
+        }
+        return new ResponseEntity<RespuestaDTO>(new RespuestaDTO(Constants.ERROR,
+                null,Constants.MESSAGE_COORD_NOT_VALIDATE), HttpStatus.CONFLICT);
     }
 }

@@ -19,7 +19,7 @@ public class UsuarioServicio {
 
     public ResponseEntity<Object> findAll()
     {
-        return new ResponseEntity<>(new RespuestaDTO("Exitoso",
+        return new ResponseEntity<>(new RespuestaDTO(Constants.SUCCESSFUL,
                 usuarioRepositorio.findAll(),null), HttpStatus.OK);
     }
 
@@ -28,46 +28,20 @@ public class UsuarioServicio {
         try
         {
             Usuario usuarioGuardado= usuarioRepositorio.save(usuario);
-            return new ResponseEntity<>(new RespuestaDTO("Registro Exitoso",
+            return new ResponseEntity<>(new RespuestaDTO(Constants.SUCCESSFUL,
                     usuarioGuardado,null), HttpStatus.OK);
         }
         catch(Exception ex)
         {
-            return new ResponseEntity<>(new RespuestaDTO("Error",
-                    null,"Error"),
+            return new ResponseEntity<>(new RespuestaDTO(Constants.ERROR,
+                    null,Constants.ERROR_PERSISTENCE_SAVE),
                     HttpStatus.CONFLICT);
         }
     }
 
-
-    public ResponseEntity<Object> findUsersByRol(int codigoRol)
+    public ResponseEntity<Object> findUsersByRol(short codeRol)
     {
-        try {
-            return new ResponseEntity<>(new RespuestaDTO("Exitoso",
-                    usuarioRepositorio.obtenerUsuariosPorRol(codigoRol), null), HttpStatus.OK);
-        }
-
-        catch (Exception ex)
-        {
-            return new ResponseEntity<>(new RespuestaDTO("Error",
-                    null, null), HttpStatus.CONFLICT);
-        }
-    }
-
-    public ResponseEntity<Object> findUsersByMail(String mail)
-    {
-        try
-        {
-            return new ResponseEntity<>(new RespuestaDTO("Exitoso",
-                    usuarioRepositorio.obtenerUsuarioPorCorreo(mail),null),
-                    HttpStatus.OK);
-
-        }
-        catch(Exception ex)
-        {
-            return new ResponseEntity<>(new RespuestaDTO("Error",
-                    null,
-                    "Usuario no encontrado"), HttpStatus.CONFLICT);
-        }
+        return new ResponseEntity<>(new RespuestaDTO(Constants.SUCCESSFUL,
+                usuarioRepositorio.obtenerUsuariosPorRol(codeRol),null), HttpStatus.OK);
     }
 }

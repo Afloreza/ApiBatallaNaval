@@ -6,6 +6,7 @@ import com.proyecbatallanaval.proyecbatallanaval.modelo.dto.CoordenadaDTO;
 import com.proyecbatallanaval.proyecbatallanaval.modelo.dto.DistribucionBarcoDTO;
 import com.proyecbatallanaval.proyecbatallanaval.modelo.dto.RespuestaDTO;
 import com.proyecbatallanaval.proyecbatallanaval.modelo.entidades.Barco;
+import com.proyecbatallanaval.proyecbatallanaval.utilidades.Constants;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+//Clase para implementar el servicio de la ListaDE
 public class ListaDEServicio {
     private ListaDE listaBarcos;
 
@@ -23,21 +25,20 @@ public class ListaDEServicio {
 
     public ResponseEntity<Object> adicionarDistribucionBarco(DistribucionBarcoDTO distribucion)
     {
-        listaBarcos.adicionarNodo(distribucion);
-        return new ResponseEntity<>(new RespuestaDTO("Exitoso","Barco adicionado"
+        listaBarcos.adicionarNodoDE(distribucion);
+        return new ResponseEntity<>(new RespuestaDTO(Constants.SUCCESSFUL,Constants.MESSAGE_SUCCESSFUL
                 ,null), HttpStatus.OK);
     }
 
     public ResponseEntity<Object> visualizarListaDE()
     {
-        return new ResponseEntity<>(new RespuestaDTO("Exitoso", listarDatos()
+        return new ResponseEntity<>(new RespuestaDTO(Constants.SUCCESSFUL, listarDatos()
                 ,null), HttpStatus.OK);
     }
 
     private List<DistribucionBarcoDTO> listarDatos()
     {
         List<DistribucionBarcoDTO> listado = new ArrayList<>();
-        //Ciclo para recorrer mi lista de de principio a fin
         NodoDE temp = listaBarcos.getCabeza();
         while(temp!=null)
         {
@@ -47,16 +48,14 @@ public class ListaDEServicio {
         return listado;
     }
 
-    public ResponseEntity<Object> validarExistenciaCoordenadas(CoordenadaDTO[] coordenadas)
+    public Barco encontrarBarcoxCodigo(String codigo)
     {
-        return new ResponseEntity<>(new RespuestaDTO("Exitoso",
-                listaBarcos.validarExistenciaCoordenadas(coordenadas),null), HttpStatus.OK);
+        return (Barco) this.listaBarcos.encontrarDatoxCodigo(codigo);
     }
 
-    public ResponseEntity<Object> contarNodos()
+    public int contarNodos()
     {
-        return new ResponseEntity<>(new RespuestaDTO("Exitoso",
-                listaBarcos.getCont(),null), HttpStatus.OK);
+        return listaBarcos.getCont();
     }
 
     public int obtenerContadorLista()
@@ -64,11 +63,10 @@ public class ListaDEServicio {
         return listaBarcos.getCont();
     }
 
-    public Barco encontrarBarcoxCodigo(String codigo)
-
-
+    public ResponseEntity<Object> validarExistenciaCoordenadas(CoordenadaDTO[] coordenadas)
     {
-        return (Barco) this.listaBarcos.encontrarDatoxCodigo(codigo);
+        return new ResponseEntity<>(new RespuestaDTO(Constants.SUCCESSFUL,
+                listaBarcos.validarExistenciaCoordenadas(coordenadas),null), HttpStatus.OK);
     }
 
     public ListaDE getListaBarcos()
@@ -76,3 +74,4 @@ public class ListaDEServicio {
         return listaBarcos;
     }
 }
+

@@ -12,27 +12,22 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path = "listabarcos")
 public class ListaDEControlador {
     private ListaDEServicio listaDEServicio;
+
     @Autowired
     public ListaDEControlador(ListaDEServicio listaDEServicio) {
         this.listaDEServicio = listaDEServicio;
     }
 
     @GetMapping
-    public @ResponseBody ResponseEntity<Object> visualizarLista()
-    {
+    public @ResponseBody
+    ResponseEntity<Object> visualizarLista() {
         return listaDEServicio.visualizarListaDE();
     }
 
     @PostMapping
-    public @ResponseBody ResponseEntity<Object> adicionarBarco(@RequestBody Barco barco)
-    {
+    public @ResponseBody
+    ResponseEntity<Object> adicionarDistribucionBarco(@RequestBody Barco barco) {
         DistribucionBarcoDTO distribucion = new DistribucionBarcoDTO(barco);
         return listaDEServicio.adicionarDistribucionBarco(distribucion);
-    }
-
-    @GetMapping("cont")
-    public @ResponseBody ResponseEntity<Object> contarNodos()
-    {
-        return listaDEServicio.contarNodos();
     }
 }

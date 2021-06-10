@@ -30,7 +30,7 @@ public class DistribucionBarcoDTO implements Serializable {
         this.casillas = new CoordenadaDTO[barco.getNumeroCasillas()];
         for(int i=0; i < casillas.length;i++)
         {
-            //TODO Verificar que la coordenada este libre
+            //Verificar que la coordenada este libre
             casillas[i]= new CoordenadaDTO(x,y,false);
             if(orientacion==1)
             {

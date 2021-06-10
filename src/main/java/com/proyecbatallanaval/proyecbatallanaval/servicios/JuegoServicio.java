@@ -18,13 +18,11 @@ public class JuegoServicio {
     public JuegoServicio(ListaDEServicio listaDEServicio) {
         this.listaDEServicio = listaDEServicio;
     }
-
-    //private List<Juego> juego;
     private Juego juego;
 
     public ResponseEntity<Object> crearJuego(Usuario jugador1, Usuario jugador2)
     {
-        // creo el juego
+        // creo el juego par ambos jugadores
 
         if (listaDEServicio.obtenerContadorLista()>0)
         {
@@ -66,7 +64,7 @@ public class JuegoServicio {
         catch (Exception ex)
         {
             return new ResponseEntity<>(new RespuestaDTO(Constants.ERROR,
-                    null,"Aun no hay un ganador"), HttpStatus.CONFLICT);
+                    null,Constants.ERROR), HttpStatus.CONFLICT);
         }
     }
 }
